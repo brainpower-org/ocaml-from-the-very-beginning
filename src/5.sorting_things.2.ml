@@ -18,7 +18,7 @@ let rec drop n l = match n with
         | [] -> []
         | h::t -> drop (n - 1) t;;
 
-(* 5.2 - The second parameter for take and drop is calculated from actual list length, thus may never be to big *)
+(* 5.2 - The second parameter for take and drop is calculated from actual list length, thus may never be too big *)
 let split l = 
     let half = List.length l / 2 in
     let left = take half l in
