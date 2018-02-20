@@ -37,14 +37,17 @@ let rec drop n l = match n with
         | [] -> []
         | h::t -> drop (n - 1) t;;
 
+let split l = 
+    let half = List.length l / 2 in
+    let left = take half l in
+    let right = drop half l in
+    (left, right);;
+
 let rec msort = function
     | [] -> []
     | [x] -> [x]
-    | l -> 
-        let half = List.length l / 2 in
-        let left = take half l in
-        let right = drop half l in
-        merge (msort left) (msort right);;
+    | l -> match split l with
+        | (left, right) -> merge (msort left) (msort right);;
 
 Printf.printf "merge [9; 53] [2; 6; 19]: %s\n" (format_int_list (merge [9; 53] [2; 6; 19]));;
 Printf.printf "msort [9; 53; 2; 6; 19]: %s\n" (format_int_list (msort [9; 53; 2; 6; 19]));;
