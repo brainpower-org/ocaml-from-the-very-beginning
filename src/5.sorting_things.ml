@@ -37,6 +37,7 @@ let rec drop n l = match n with
         | [] -> []
         | h::t -> drop (n - 1) t;;
 
+(* 5.1 - Avoid calculating List.length l / 2 twice: Assign result to half binding *)
 let split l = 
     let half = List.length l / 2 in
     let left = take half l in
