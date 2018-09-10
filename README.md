@@ -24,7 +24,7 @@ cargo install watchexec
 ## Getting started
 
 ```sh
-λ git clone https://github.com/marionebl/ocaml-from-the-very-beginning.git
+λ git clone https://github.com/sinnerschrader/ocaml-from-the-very-beginning.git
 λ cd ocaml-from-the-very-beginning
 λ make
 λ cd chapter_n
