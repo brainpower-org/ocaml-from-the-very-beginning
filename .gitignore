@@ -1,3 +1,2 @@
-build/
-src/*.cmi
-src/*.cmo
+_build
+.merlin

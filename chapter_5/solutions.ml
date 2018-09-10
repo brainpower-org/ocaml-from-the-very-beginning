@@ -10,12 +10,6 @@ let rec sort = function (* 'a list -> 'a list *)
     | [] -> []
     | h::t -> insert h (sort t);;
 
-let format_list l fn = Printf.sprintf "[%s]" (String.concat "; " (List.map fn l));;
-let format_int_list l = format_list l string_of_int;;
-let format_char_list l = format_list l (Printf.sprintf "%c");;
-
-Printf.printf "sort [53; 9; 2; 6; 19]: %s\n" (format_int_list (sort [53; 9; 2; 6; 19]));;
-Printf.printf "sort ['p'; 'i'; 'm'; 'c'; 's'; 'h']: %s\n" (format_char_list (sort ['p'; 'i'; 'm'; 'c'; 's'; 'h']));;
 
 let rec merge x y = match x, y with (* 'a list -> 'a list -> 'a list *)
     | [], l -> l
@@ -49,5 +43,35 @@ let rec msort = function
     | l -> match split l with
         | (left, right) -> merge (msort left) (msort right);;
 
-Printf.printf "merge [9; 53] [2; 6; 19]: %s\n" (format_int_list (merge [9; 53] [2; 6; 19]));;
-Printf.printf "msort [9; 53; 2; 6; 19]: %s\n" (format_int_list (msort [9; 53; 2; 6; 19]));;
+(* 1 - Avoid calculating List.length l / 2 twice: Assign result to half binding *)
+(* 2 - The second parameter for take and drop is calculated from actual list length, thus may never be too big *)
+let split l = 
+    let half = List.length l / 2 in
+    let left = take half l in
+    let right = drop half l in
+    (left, right);;
+
+(* 3 - Write an inverted insertion sort *)
+let rec isort = function (* 'a list -> 'a list *)
+    | [] -> []
+    | h::t -> insert h (isort t);;
+
+(* 4 - Write an inverted insertion sort *)
+let rec eql a b = match a, b with
+    | [], [] -> true
+    | _, [] -> false
+    | [], _ -> false
+    | ah::at, bh::bt -> ah = bh && eql at bt;;
+
+let sorted l = eql l (isort l);;
+
+(* 6 - combine insert and isort into one function *)
+let rec sort = function
+    | [] -> []
+    | ah::at ->
+        match at with
+        | [] -> [ah]
+        | bh::bt -> 
+            if ah <= bh
+                then ah :: bh :: sort bt
+                else sort(bh :: sort (bt @ [ah]));;

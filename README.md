@@ -1,45 +1,36 @@
-> Answers and notes for the coding questions in OCaml - From The Very Beginning
+# OCaml from the very Beginning
 
-# OCaml - From The Very Beginning
+* Study repository for learning OCaml
+* Basic `jbuilder` setup
+* TDD via `OUnit`
+* Exercises from OCaml from the very Beginnging
 
 ## Prerequesites
 
 * OCaml, `>= 4.06.0`. See [ocaml.org/install](https://ocaml.org/docs/install.html)
 * GNU make, `>= 3.81`
+* jbuilder
+* OUnit
+* Core
+* watchexec
 
-## Getting Started
+```sh
+opam install OUnit Core jbuilder
 
+# May be available via pkg manager, e.g. brew
+cargo install watchexec 
 ```
+
+## Getting started
+
+```sh
 λ git clone https://github.com/marionebl/ocaml-from-the-very-beginning.git
 λ cd ocaml-from-the-very-beginning
 λ make
+λ cd chapter_n
+watchexec -e ml make test
 ```
 
-## Adding new solutions
+## Related
 
-```
-λ touch src/making_lists.2.ml
-λ make run/making_lists.2
-```
-
-## Listing available solutions
-
-```
-λ make ls
-```
-
-## Building single solutions
-
-```sh
-# Given src/4_making_lists.1.ml exists
-λ make build/4.making_lists.1
-ocamlc src/4.making_lists.1.ml -o build/4.making_lists.1
-```
-
-## Running single solutions
-
-```sh
-# Given src/making_lists.1.ml exists
-λ make run/4.making_lists.1
-ocaml src/4.making_lists.1.ml
-```
+* [Reason from the very Beginning](https://github.com/sinnerschrader/reason-from-the-very-beginning)
