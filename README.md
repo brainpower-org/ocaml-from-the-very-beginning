@@ -3,7 +3,7 @@
 * Study repository for learning OCaml
 * Basic `jbuilder` setup
 * TDD via `OUnit`
-* Exercises from OCaml from the very Beginnging
+* Exercises from OCaml from the very Beginning
 
 ## Prerequesites
 
