@@ -7,5 +7,5 @@ let rec evens = function
   | h::t -> (h mod 2 = 0) :: evens t
 
 let rec map f = function  
-| [] -> []
-| h::t -> f h :: map f t
+  | [] -> []
+  | h::t -> f h :: map f t
