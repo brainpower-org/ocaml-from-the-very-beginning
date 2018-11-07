@@ -18,7 +18,21 @@ let tests =
     "base_double [2;3;4] => [4;6;8]">:: 
       (fun _ -> assert_equal [4;6;8] (base_double [2;3;4])); 
     "calm ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
-      (fun _ -> assert_equal ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] (calm ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'])); 
+      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (calm ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
+    "calm2 ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
+      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (calm2 ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
+    "calm_map ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
+      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (calm_map ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
+    "calm_mappable ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
+      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (map ( function 
+  | '!' -> '.' 
+  | h -> h ) ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
+    "clip 2 => 2">::
+      (fun _ -> assert_equal 2 (clip 2)); 
+    "clip 12 => 10">::
+      (fun _ -> assert_equal 10 (clip 12)); 
+    "clip -1 => 1">::
+      (fun _ -> assert_equal 1 (clip (-1))); 
   ]
 
 let () =
