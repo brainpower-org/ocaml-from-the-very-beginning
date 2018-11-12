@@ -1,4 +1,5 @@
-open Core_kernel
+
+open Base
 open OUnit2
 open Solutions
 
@@ -33,6 +34,22 @@ let tests =
       (fun _ -> assert_equal 10 (clip 12)); 
     "clip -1 => 1">::
       (fun _ -> assert_equal 1 (clip (-1))); 
+    "clip_list [] => []">::
+      (fun _ -> assert_equal [] (clip_list [])); 
+    "clip_list [1;2;3] => [1; 2; 3]">::
+      (fun _ -> assert_equal [1;2;3] (clip_list [1;2;3])); 
+    "clip_list [-1;-2;30] => [1; 1; 10]">::
+      (fun _ -> assert_equal [1;1;10] (clip_list [-1;-2;30]));
+    "clip_list [-1;2;30] => [1; 2; 10]">::
+      (fun _ -> assert_equal [1;2;10] (clip_list [-1;2;30]));
+    "anon_clip_list [1;2;3] => [1; 2; 3]">::
+      (fun _ -> assert_equal [1;2;3] (anon_clip_list [1;2;3])); 
+    "anon_clip_list [-1;-2;30] => [1; 1; 10]">::
+      (fun _ -> assert_equal [1;1;10] (anon_clip_list [-1;-2;30]));
+    "anon_clip_list [-1;2;30] => [1; 2; 10]">::
+      (fun _ -> assert_equal [1;2;10] (anon_clip_list [-1;2;30]));
+    "apply (+) 6 4 => 24">::
+      (fun _ -> assert_equal 24 (apply ((+) 4) 6 0));
   ]
 
 let () =
