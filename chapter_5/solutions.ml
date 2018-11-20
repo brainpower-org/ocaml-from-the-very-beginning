@@ -66,12 +66,15 @@ let rec eql a b = match a, b with
 let sorted l = eql l (isort l);;
 
 (* 6 - combine insert and isort into one function *)
-let rec sort = function
+let rec insert x l =
+  match l with
+  | [] -> [x] 
+  | h::t -> 
+    if x <= h
+      then x :: h :: t
+      else h :: insert x t
+
+(* Exercise 6.4: α list -> β list *)
+let rec insertion_sort = function
     | [] -> []
-    | ah::at ->
-        match at with
-        | [] -> [ah]
-        | bh::bt -> 
-            if ah <= bh
-                then ah :: bh :: sort bt
-                else sort(bh :: sort (bt @ [ah]));;
+    | h::t -> insert h (insertion_sort t)
