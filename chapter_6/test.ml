@@ -4,6 +4,7 @@ open OUnit2
 open Solutions
 
 let print_int_list l = List.map l ~f:Int.to_string |> String.concat ~sep:";"
+let print_char_list l =  List.map l ~f:Char.to_string |> String.concat ~sep:";"
 
 let tests =
   [
@@ -51,12 +52,18 @@ let tests =
       (fun _ -> assert_equal [1;2;10] (anon_clip_list [-1;2;30]));
     "apply (+) 6 4 => 24">::
       (fun _ -> assert_equal 24 (apply ((+) 4) 6 0));
-    "insertion_sort [] => []">::
+    "insert (-) 1 [2]">::
+      (fun _ -> assert_equal ~printer:print_int_list [1; 2] (insert ~f:(-) 1 [2])); 
+    "insert (-) 2 [1]">::
+      (fun _ -> assert_equal ~printer:print_int_list [1; 2] (insert ~f:(-) 2 [1])); 
+    "insert (-) 'B' [':']">::
+      (fun _ -> assert_equal ~printer:print_char_list [':'; 'B'] (insert ~f:Char.compare 'B' [':'])); 
+    (* "insertion_sort [] => []">::
       (fun _ -> assert_equal ~printer:print_int_list [] (insertion_sort [])); 
     "insertion_sort [1] => [1]">::
       (fun _ -> assert_equal ~printer:print_int_list [1] (insertion_sort [1])); 
     "insertion_sort [5;7;3;1] => [1;3;5;7]">::
-      (fun _ -> assert_equal ~printer:print_int_list [1;3;5;7] (insertion_sort [5;7;3;1])); 
+      (fun _ -> assert_equal ~printer:print_int_list [1;3;5;7] (insertion_sort [5;7;3;1])); *)
   ]
 
 let () =
