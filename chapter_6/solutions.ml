@@ -62,17 +62,16 @@ let rec apply f count arg =
 (* For the lazy: https://ocaml.janestreet.com/ocaml-core/v0.9/doc/base/Base/Fn/index.html
 let apply f n = Fn.apply_n_times ~n:n f *)
 
-
-let rec insert x l =
+(* Exercise 6.5: ~f:(α -> α -> int) -> α -> α list -> α list *)
+let rec insert ~f x l =
   match l with
   | [] -> [x] 
   | h::t -> 
-    if x <= h
+    if (f x h) < 0
       then x :: h :: t
-      else h :: insert x t
+      else h :: insert ~f x t
 
-(* TODO: do the exercise and modify the function)
-(* Exercise 6.5: TODO: α list -> β list *)
-let rec insertion_sort = function
+(* Exercise 6.5: ~f:(α -> α -> int) -> α list -> α list *)
+(* let rec insertion_sort ~f l = 
     | [] -> []
-    | h::t -> insert h (insertion_sort t)
+    | h::t -> insert ~f h (insertion_sort t) *)
