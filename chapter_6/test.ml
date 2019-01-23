@@ -58,12 +58,14 @@ let tests =
       (fun _ -> assert_equal ~printer:print_int_list [1; 2] (insert ~f:(-) 2 [1])); 
     "insert (-) 'B' [':']">::
       (fun _ -> assert_equal ~printer:print_char_list [':'; 'B'] (insert ~f:Char.compare 'B' [':'])); 
-    (* "insertion_sort [] => []">::
-      (fun _ -> assert_equal ~printer:print_int_list [] (insertion_sort [])); 
+    "insertion_sort [] => []">::
+      (fun _ -> assert_equal ~printer:print_int_list [] (insertion_sort ~f:(-) [])); 
     "insertion_sort [1] => [1]">::
-      (fun _ -> assert_equal ~printer:print_int_list [1] (insertion_sort [1])); 
+      (fun _ -> assert_equal ~printer:print_int_list [1] (insertion_sort ~f:(-) [1])); 
     "insertion_sort [5;7;3;1] => [1;3;5;7]">::
-      (fun _ -> assert_equal ~printer:print_int_list [1;3;5;7] (insertion_sort [5;7;3;1])); *)
+      (fun _ -> assert_equal ~printer:print_int_list [1;3;5;7] (insertion_sort ~f:(-) [5;7;3;1]));
+    "insertion_sort [5;7;3;1] => [7;5;3;1]">::
+      (fun _ -> assert_equal ~printer:print_int_list [7;5;3;1] (insertion_sort ~f:(Fn.flip (-)) [5;7;3;1]));
   ]
 
 let () =
