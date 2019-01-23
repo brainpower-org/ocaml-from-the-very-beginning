@@ -14,11 +14,13 @@
 * Core
 * watchexec
 
-```sh
-opam install OUnit Core jbuilder
+### Install on macOS
 
-# May be available via pkg manager, e.g. brew
-cargo install watchexec 
+```sh
+# From scratch
+brew install ocaml opam watchexec
+opam init
+opam install OUnit Core jbuilder
 ```
 
 ## Getting started
