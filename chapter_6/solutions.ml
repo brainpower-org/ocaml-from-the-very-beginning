@@ -63,6 +63,10 @@ let rec apply f count arg =
 let apply f n = Fn.apply_n_times ~n:n f *)
 
 (* Exercise 6.5: ~f:(α -> α -> int) -> α -> α list -> α list *)
+
+(* 5. Modify the insertion sort function from the preceding 
+chapter to take a comparison function, in the same way that 
+we modified merge sort in this chapter. What is its type? *)
 let rec insert ~f x l =
   match l with
   | [] -> [x] 
@@ -72,6 +76,7 @@ let rec insert ~f x l =
       else h :: insert ~f x t
 
 (* Exercise 6.5: ~f:(α -> α -> int) -> α list -> α list *)
-(* let rec insertion_sort ~f l = 
+let rec insertion_sort ~f l = 
+    match l with
     | [] -> []
-    | h::t -> insert ~f h (insertion_sort t) *)
+    | h::t -> insert ~f h (insertion_sort ~f t)
