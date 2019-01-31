@@ -64,7 +64,7 @@ let apply f n = Fn.apply_n_times ~n:n f *)
 
 (* Exercise 6.5: ~f:(α -> α -> int) -> α -> α list -> α list *)
 
-(* 5. Modify the insertion sort function from the preceding 
+(* 6.5. Modify the insertion sort function from the preceding 
 chapter to take a comparison function, in the same way that 
 we modified merge sort in this chapter. What is its type? *)
 let rec insert ~f x l =
@@ -80,3 +80,15 @@ let rec insertion_sort ~f l =
     match l with
     | [] -> []
     | h::t -> insert ~f h (insertion_sort ~f t)
+
+(* Write a function filter which takes a function of type α → bool and
+an α list and returns a list of just those elements of the argument list
+for which the given function returns true. *)
+let rec filter ~f l =
+  match l with
+  | [] -> []
+  | h::t -> match(f h) with
+      | true -> h :: filter ~f t 
+      | false -> filter ~f t
+
+
