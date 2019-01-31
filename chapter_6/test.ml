@@ -66,6 +66,20 @@ let tests =
       (fun _ -> assert_equal ~printer:print_int_list [1;3;5;7] (insertion_sort ~f:(-) [5;7;3;1]));
     "insertion_sort [5;7;3;1] => [7;5;3;1]">::
       (fun _ -> assert_equal ~printer:print_int_list [7;5;3;1] (insertion_sort ~f:(Fn.flip (-)) [5;7;3;1]));
+    "insertion_sort [-1;99;7;-1;3] => [-1;-1;3;7;99]">::
+      (fun _ -> assert_equal ~printer:print_int_list [-1;-1;3;7;99] (insertion_sort ~f:(-) [-1;99;7;-1;3]));
+    "insertion_sort fn.flip [-1;99;7;-1;3] => [-1;-1;3;7;99]">::
+      (fun _ -> assert_equal ~printer:print_int_list [99;7;3;-1;-1] (insertion_sort ~f:(Fn.flip (-)) [-1;99;7;-1;3]));
+    "filter (>0) [-1;99;7;-1;3] => [99;7;3]">::
+      (fun _ -> assert_equal ~printer:print_int_list [99;7;3] (filter ~f:((<) 0) [-1;99;7;-1;3]));
+    "filter (>0) [] => []">::
+      (fun _ -> assert_equal ~printer:print_int_list [] (filter ~f:((<) 0) []));
+    "filter (>0) [0] => []">::
+      (fun _ -> assert_equal ~printer:print_int_list [] (filter ~f:((<) 0) [0]));
+    "filter (>0) [-1;-55] => []">::
+      (fun _ -> assert_equal ~printer:print_int_list [] (filter ~f:((<) 0) [-1;-55]));
+    "filter (==b) ['a';'b';'c';'D';'b'] => ['b';'b]">::
+      (fun _ -> assert_equal ~printer:print_char_list ['b';'b'] (filter ~f:((==) 'b') ['a';'b';'c';'D';'b']));
   ]
 
 let () =
