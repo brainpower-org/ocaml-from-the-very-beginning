@@ -81,7 +81,7 @@ let rec insertion_sort ~f l =
     | [] -> []
     | h::t -> insert ~f h (insertion_sort ~f t)
 
-(* Write a function filter which takes a function of type α → bool and
+(* Exercise 6.6: Write a function filter which takes a function of type α → bool and
 an α list and returns a list of just those elements of the argument list
 for which the given function returns true. *)
 let rec filter ~f l =
@@ -91,4 +91,21 @@ let rec filter ~f l =
       | true -> h :: filter ~f t 
       | false -> filter ~f t
 
+(* Exercise 6.7: Write the function for_all which, given a function of type α → bool and an argument list of type
+α list evaluates to true if and only if the function returns true for every element of the list. Give
+examples of its use. *)
+(* ~f:(a -> bool) -> a list -> bool *)
+let rec for_all ~f l = 
+  match l with 
+  | [] -> true
+  | h::t -> match (f h) with
+      | true -> for_all ~f t
+      | _ -> false
 
+(* a -> a -> (a -> bool) *)
+let flip_compare ~f x y = f y x 
+
+let flip_compare2 ~f x = fun y -> f y x
+
+(* 8. Write a function mapl which maps a function of type α → β over a list of type α list list to produce
+a list of type β list list. *)

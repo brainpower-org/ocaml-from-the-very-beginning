@@ -80,6 +80,18 @@ let tests =
       (fun _ -> assert_equal ~printer:print_int_list [] (filter ~f:((<) 0) [-1;-55]));
     "filter (==b) ['a';'b';'c';'D';'b'] => ['b';'b]">::
       (fun _ -> assert_equal ~printer:print_char_list ['b';'b'] (filter ~f:((==) 'b') ['a';'b';'c';'D';'b']));
+    "for_all (==b) ['a';'b';'c';'D';'b'] => false">::
+      (fun _ -> assert_equal false (for_all ~f:((==) 'b') ['a';'b';'c';'D';'b']));
+    "for_all (==b) ['b';'b';'b';'b';'b'] => true">::
+      (fun _ -> assert_equal true (for_all ~f:((==) 'b') ['b';'b';'b';'b';'b']));
+    "for_all (==b) [] => true">::
+      (fun _ -> assert_equal true (for_all ~f:((==) 'b') []));
+    "for_all (>2) [1;2;50;-3] => false">::
+      (fun _ -> assert_equal false (for_all ~f:((>) 2) [1;2;50;-3]));
+    "for_all (>-4) [1;2;0;-3] => true">::
+      (fun _ -> assert_equal true (for_all ~f:(flip_compare ~f:(>) (-4)) [1;2;50;-3]));
+    "for_all (>-4) [1;2;0;-3] => true">::
+      (fun _ -> assert_equal true (for_all ~f:(flip_compare2 ~f:(>) (-4)) [1;2;50;-3]));
   ]
 
 let () =
