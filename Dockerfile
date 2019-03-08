@@ -10,8 +10,7 @@ RUN opam init -a --disable-sandboxing
 
 # install ocaml dependencies
 RUN opam install OUnit Core dune -y
-RUN eval $(opam env)
-RUN echo "eval $(opam env)" >> /root/.profile
+RUN echo "eval $(opam env)" >> /root/.bashrc
 
 # Install code-server extensions
 # RUN mkdir -p /home/root/.code-server/extensions
