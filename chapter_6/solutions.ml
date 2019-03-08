@@ -25,7 +25,7 @@ let rec calm = function
   | '!'::t ->  '.' :: calm t
   | h::t -> h :: calm t
 
-let rec calm2 l = match l with 
+let calm2 l = match l with 
   | [] -> []
   | '!'::t ->  '.' :: calm t
   | h::t -> h :: calm t

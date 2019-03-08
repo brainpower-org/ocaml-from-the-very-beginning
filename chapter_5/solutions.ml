@@ -29,7 +29,7 @@ let rec drop n l = match n with
     | 0 -> l
     | _ -> match l with
         | [] -> []
-        | h::t -> drop (n - 1) t;;
+        | _::t -> drop (n - 1) t;;
 
 let split l = 
     let half = List.length l / 2 in

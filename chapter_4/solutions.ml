@@ -23,12 +23,12 @@ let palindrome l = (* 'a list -> 'a list *)
 (* 4: Function which returns all but the last item *)
 let rec drop_last = function (* 'a list -> 'a list *)
   | [] -> []
-  | [t] -> []
+  | [_] -> []
   | h::t -> h :: drop_last t;;
 
 let rec drop_last_tail l a = match l with (* 'a list -> a' list *)
   | [] -> a
-  | [t] -> a
+  | [_] -> a
   | h::t -> h :: drop_last_tail t a;;
 
 (* 5 *)
@@ -45,9 +45,9 @@ let rec make_set l a = match l with (* 'a list -> 'a list *)
 
 (* 7: Given a naive rev implementation we can deduce complexity of On2,
    as we have to *append* for every item, which itself is complexity On *)
-let rec rev l = match l with
+let rec rev_append l = match l with
     | [] -> []
-    | h::t -> rev t @ [h];;
+    | h::t -> rev_append t @ [h];;
 
 (* 7: Given a tail recursive implementation we can deduce complexity of On *)
 let rec rev l a = match l with
