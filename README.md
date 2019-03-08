@@ -15,9 +15,7 @@
 ```sh
 git clone https://github.com/sinnerschrader/ocaml-from-the-very-beginning.git
 cd ocaml-from-the-very-beginning
-
-docker-compose up
-# docker run -v $PWD:/repo -it marionebl/ocaml-from-the-very-beginning-dev dune runtest --watch
+docker-compose up # open browser at http://localhost:8443
 ```
 
 ## Related
