@@ -20,7 +20,8 @@ RUN echo '{"rootWorkspaces":[],"folderURIWorkspaces":[],"emptyWorkspaceInfos":[]
 
 # Install code-server extensions
 ADD extensions extensions
-RUN apt-get install unzip -yRUN unzip extensions/jaredly.reason-vscode-1.5.2.vsix.zip 'extension/*' -d /tmp/jaredly.reason-vscode-1.5.2/
+RUN apt-get install unzip -y
+RUN unzip extensions/jaredly.reason-vscode-1.5.2.vsix.zip 'extension/*' -d /tmp/jaredly.reason-vscode-1.5.2/
 RUN mv /tmp/jaredly.reason-vscode-1.5.2/extension/ /root/.code-server/extensions/jaredly.reason-vscode-1.5.2/
 
 RUN mkdir /repo
