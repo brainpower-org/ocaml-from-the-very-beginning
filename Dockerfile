@@ -1,24 +1,26 @@
-FROM codercom/code-server
+FROM codercom/code-server:latest
 
-# get opam
+# Install opam and ocaml
 RUN apt-get update
-RUN apt-get install build-essential m4 git rsync mercurial darcs wget unzip bubblewrap fswatch -y
-RUN wget https://github.com/ocaml/opam/releases/download/2.0.3/opam-2.0.3-x86_64-linux
-RUN mv opam-2.0.3-x86_64-linux /usr/bin/opam
-RUN chmod a+x /usr/bin/opam
+RUN apt-get install software-properties-common -y
+RUN add-apt-repository ppa:avsm/ppa
+RUN apt-get update
+RUN apt-get install make gcc m4 mercurial darcs opam -y
 RUN opam init -a --disable-sandboxing
+RUN opam switch create latest 4.07.1
+RUN opam switch set latest
 
-# install ocaml dependencies
+# Install ocaml dependencies
+RUN apt-get install fswatch -y
 RUN opam install OUnit Core dune -y
-RUN echo "eval $(opam env)" >> /root/.bashrc
+
+# Add missing code-server data files
+RUN mkdir -p /root/.code-server/Backups && mkdir -p /root/.code-server/extensions && mkdir -p /root/.code-server/User/workspaceStorage
+RUN echo '{"rootWorkspaces":[],"folderURIWorkspaces":[],"emptyWorkspaceInfos":[],"emptyWorkspaces":[]}' > /root/.code-server/Backups/workspaces.json
 
 # Install code-server extensions
-# RUN mkdir -p /home/root/.code-server/extensions
-RUN mkdir -p /root/.code-server/Backups && mkdir -p /root/.code-server/extensions
-RUN echo '{}' > /root/.code-server/Backups/workspaces.json
-
 ADD extensions extensions
-RUN unzip extensions/jaredly.reason-vscode-1.5.2.vsix.zip 'extension/*' -d /tmp/jaredly.reason-vscode-1.5.2/
+RUN apt-get install unzip -yRUN unzip extensions/jaredly.reason-vscode-1.5.2.vsix.zip 'extension/*' -d /tmp/jaredly.reason-vscode-1.5.2/
 RUN mv /tmp/jaredly.reason-vscode-1.5.2/extension/ /root/.code-server/extensions/jaredly.reason-vscode-1.5.2/
 
 RUN mkdir /repo
