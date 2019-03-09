@@ -7,4 +7,4 @@ services:
       - "8443:8443"
     volumes:
       - ".:/repo/"
-    command: code-server --allow-http --no-auth /repo
+    command: /bin/bash code-server.sh

@@ -1,3 +1,3 @@
 #/bin/sh
-eval $(opam env)
+source ~/.profile
 code-server --allow-http --no-auth /repo

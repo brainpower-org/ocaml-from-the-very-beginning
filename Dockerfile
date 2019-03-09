@@ -15,8 +15,12 @@ RUN apt-get install fswatch -y
 RUN opam install OUnit Core dune -y
 
 # Add missing code-server data files
-RUN mkdir -p /root/.code-server/Backups && mkdir -p /root/.code-server/extensions && mkdir -p /root/.code-server/User/workspaceStorage
+RUN mkdir -p /root/.code-server/Backups
+RUN mkdir -p /root/.code-server/extensions 
+RUN mkdir -p /root/.code-server/User/workspaceStorage
+RUN mkdir -p /root/.code-server/globalStorage
 RUN echo '{"rootWorkspaces":[],"folderURIWorkspaces":[],"emptyWorkspaceInfos":[],"emptyWorkspaces":[]}' > /root/.code-server/Backups/workspaces.json
+RUN echo '{}' > /root/.code-server/globalStorage/state.json
 
 # Install code-server extensions
 ADD extensions extensions
