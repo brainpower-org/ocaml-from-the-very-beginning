@@ -92,6 +92,8 @@ let tests =
       (fun _ -> assert_equal true (for_all ~f:(flip_compare ~f:(>) (-4)) [1;2;50;-3]));
     "for_all (>-4) [1;2;0;-3] => true">::
       (fun _ -> assert_equal true (for_all ~f:(flip_compare2 ~f:(>) (-4)) [1;2;50;-3]));
+    "mapl (String.length) [[\"one\";\"two\";\"three\"];[\"four\";\"five\";\"six\"]] => [[3;3;5];[4;4;3]]">::
+      (fun _ -> assert_equal [[3;3;5];[4;4;3]] (mapl ~f:String.length [["one";"two";"three"];["four";"five";"six"]]));
   ]
 
 let () =
