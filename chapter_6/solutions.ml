@@ -109,3 +109,11 @@ let flip_compare2 ~f x = fun y -> f y x
 
 (* 8. Write a function mapl which maps a function of type α → β over a list of type α list list to produce
 a list of type β list list. *)
+(* ~f:(a -> b) -> a list list -> b list list *)
+let mapl ~f l =
+  let rec aux ~f m = 
+    match m with
+  | [] -> []
+  | h::t -> List.map ~f h :: aux ~f t
+  in aux ~f l
+
