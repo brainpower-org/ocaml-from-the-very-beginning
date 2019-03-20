@@ -13,7 +13,7 @@ let tests =
     "evens [1;2;3] => [false;true;false]">::
       (fun _ -> assert_equal [false;true;false] (evens [1;2;3]));
     "map (a -> 0) [1;2;3] => [0;0;0]">::
-      (fun _ -> assert_equal [0;0;0] (map (fun a -> 0) [0;0;0]));
+      (fun _ -> assert_equal [0;0;0] (map ~f:(fun _ -> 0) [0;0;0]));
     "map_double [2;3;4] => [4;6;8]">:: 
       (fun _ -> assert_equal [4;6;8] (map_double [2;3;4])); 
     "map_evens [1;2;3] => [false;true;false]">::
@@ -27,7 +27,7 @@ let tests =
     "calm_map ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
       (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (calm_map ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
     "calm_mappable ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'] => ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.']">:: 
-      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (map ( function 
+      (fun _ -> assert_equal ['H';'E';'L';'P';'.';' ';'F';'I';'R';'E';'.'] (map ~f:(function 
   | '!' -> '.' 
   | h -> h ) ['H';'E';'L';'P';'!';' ';'F';'I';'R';'E';'!'])); 
     "clip 2 => 2">::
@@ -79,13 +79,13 @@ let tests =
     "filter (>0) [-1;-55] => []">::
       (fun _ -> assert_equal ~printer:print_int_list [] (filter ~f:((<) 0) [-1;-55]));
     "filter (==b) ['a';'b';'c';'D';'b'] => ['b';'b]">::
-      (fun _ -> assert_equal ~printer:print_char_list ['b';'b'] (filter ~f:((==) 'b') ['a';'b';'c';'D';'b']));
+      (fun _ -> assert_equal ~printer:print_char_list ['b';'b'] (filter ~f:(phys_equal 'b') ['a';'b';'c';'D';'b']));
     "for_all (==b) ['a';'b';'c';'D';'b'] => false">::
-      (fun _ -> assert_equal false (for_all ~f:((==) 'b') ['a';'b';'c';'D';'b']));
+      (fun _ -> assert_equal false (for_all ~f:(phys_equal 'b') ['a';'b';'c';'D';'b']));
     "for_all (==b) ['b';'b';'b';'b';'b'] => true">::
-      (fun _ -> assert_equal true (for_all ~f:((==) 'b') ['b';'b';'b';'b';'b']));
+      (fun _ -> assert_equal true (for_all ~f:(phys_equal 'b') ['b';'b';'b';'b';'b']));
     "for_all (==b) [] => true">::
-      (fun _ -> assert_equal true (for_all ~f:((==) 'b') []));
+      (fun _ -> assert_equal true (for_all ~f:(phys_equal 'b') []));
     "for_all (>2) [1;2;50;-3] => false">::
       (fun _ -> assert_equal false (for_all ~f:((>) 2) [1;2;50;-3]));
     "for_all (>-4) [1;2;0;-3] => true">::

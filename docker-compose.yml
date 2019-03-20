@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ocaml:
+    build: .
+    image: marionebl/ocaml-from-the-very-beginning-dev
+    ports:
+      - "8443:8443"
+    volumes:
+      - ".:/repo/"
+    command: /bin/bash code-server.sh

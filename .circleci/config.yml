@@ -1,0 +1,13 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: marionebl/ocaml-from-the-very-beginning-dev
+    working_directory: /repo
+    steps:
+      - checkout:
+          path: /repo
+      - run:
+          name: Test
+          command: source ~/.profile && dune runtest

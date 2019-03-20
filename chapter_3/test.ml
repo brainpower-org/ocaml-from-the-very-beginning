@@ -1,4 +1,3 @@
-open Core_kernel
 open OUnit2
 open Solutions
 
