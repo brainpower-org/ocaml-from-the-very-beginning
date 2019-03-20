@@ -114,6 +114,6 @@ let mapl ~f l =
   let rec aux ~f m = 
     match m with
   | [] -> []
-  | h::t -> List.map f h :: aux ~f t
+  | h::t -> List.map ~f h :: aux ~f t
   in aux ~f l
 
