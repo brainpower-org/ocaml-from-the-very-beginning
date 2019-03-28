@@ -7,4 +7,5 @@ services:
       - "8443:8443"
     volumes:
       - ".:/repo/"
-    command: /bin/bash code-server.sh
+    entrypoint: /bin/bash
+    command: code-server.sh
