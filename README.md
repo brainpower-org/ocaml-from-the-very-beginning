@@ -15,6 +15,7 @@
 ```sh
 git clone https://github.com/sinnerschrader/ocaml-from-the-very-beginning.git
 cd ocaml-from-the-very-beginning
+docker-compose pull
 docker-compose up # open browser at http://localhost:8443
 ```
 
