@@ -12,7 +12,7 @@ RUN opam switch set latest
 
 # Install ocaml dependencies
 RUN apt-get install fswatch -y
-RUN opam install OUnit Core dune -y
+RUN opam install OUnit Core dune utop -y
 
 # Add missing code-server data files
 RUN mkdir -p /root/.code-server/Backups
