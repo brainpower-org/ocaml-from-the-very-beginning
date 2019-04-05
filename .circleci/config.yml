@@ -7,10 +7,10 @@ jobs:
     working_directory: /repo
     steps:
       - checkout:
-          path: /checkout
+          path: ~/checkout
       - run:
           name: Sync
-          command: cp -rf /checkout/* /repo
+          command: cp -rf ~/checkout/* /repo/
       - run:
           name: Test
           command: source ~/.profile && dune runtest
