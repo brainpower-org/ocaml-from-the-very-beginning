@@ -6,6 +6,10 @@ services:
     ports:
       - "8443:8443"
     volumes:
-      - ".:/repo/"
+      - "./.git:/repo/.git"
+      - "./chapters:/repo/chapters"
+      - "./.gitignore:/repo/.gitignore"
+      - "./dune-project:/repo/dune-project"
+      - "./README.md:/repo/README.md"
     entrypoint: /bin/bash
     command: /code-server.sh
