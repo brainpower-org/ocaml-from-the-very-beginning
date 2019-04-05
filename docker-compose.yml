@@ -8,4 +8,4 @@ services:
     volumes:
       - ".:/repo/"
     entrypoint: /bin/bash
-    command: code-server.sh
+    command: /code-server.sh
