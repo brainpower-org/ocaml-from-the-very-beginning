@@ -12,3 +12,4 @@ RUN ext install freebroccolo.reasonml 1.0.38
 
 ADD --chown=opam:opam . ./
 RUN eval $(opam config env) && dune runtest
+RUN sudo chown -R opam:opam /root
