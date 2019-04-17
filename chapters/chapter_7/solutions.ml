@@ -7,14 +7,41 @@ is no positive element, it should raise the built-in Not_found exception. *)
 let smallest l = 
     List.filter ~f:(fun a -> a > 0) l
     |> List.sort ~compare:(fun a b -> a - b)
-    |> List.hd_exn
+    |> (fun l -> try (List.hd_exn l) with Failure(_) -> raise Not_found)
+
+let smallest_length_check l = 
+    List.filter ~f:(fun a -> a > 0) l
+    |> List.sort ~compare:(fun a b -> a - b)
+    |> (fun l -> match l with 
+        | [] -> raise Not_found
+        | h::_ -> h
+        )
+
+let smallest_option l = 
+    List.filter ~f:(fun a -> a > 0) l
+    |> List.sort ~compare:(fun a b -> a - b)
+    |> List.hd
+    |> (function
+        | None -> raise Not_found
+        | Some(h) -> h)
 
 (* 2. Write another function smallest_or_zero which uses the smallest function but if Not_found is
 raised, returns zero. *)
+let smallest_or_zero l = try (smallest l) with Not_found -> 0
+    
 
 (* 3. Write an exception definition and a function which calculates the largest integer smaller than or
 equal to the square root of a given integer. If the argument is negative, the exception should be
 raised. *)
+exception Negative_Argument of int
+
+let floor_sqrt n = 
+    if n < 0 then
+        raise (Negative_Argument n)
+    else 
+    float_of_int n
+    |> sqrt
+    |> int_of_float
 
 (* 4. Write another function which uses the previous one, but handles the exception, and simply returns
 zero when a suitable integer cannot be found. *)
