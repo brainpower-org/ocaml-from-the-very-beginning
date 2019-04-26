@@ -11,5 +11,4 @@ services:
       - "./.gitignore:/repo/.gitignore"
       - "./dune-project:/repo/dune-project"
       - "./README.md:/repo/README.md"
-    entrypoint: /bin/bash
-    command: /code-server.sh
+    command: code-server --allow-http --no-auth /repo

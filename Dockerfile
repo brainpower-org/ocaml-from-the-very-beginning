@@ -5,11 +5,11 @@ RUN mkdir /repo
 RUN chown -R opam:opam /repo
 WORKDIR /repo
 
-USER opam
-ADD code-server.sh /
-RUN ext install maelvalais.dune 0.0.5
-RUN ext install freebroccolo.reasonml 1.0.38 
 
+USER opam
 ADD --chown=opam:opam . ./
-RUN eval $(opam config env) && dune runtest
-RUN sudo chown -R opam:opam /root
+RUN opam install --deps-only -y .
+
+SHELL ["/bin/bash", "--login" , "-c"]
+# RUN eval $(opam env)
+RUN dune runtest
