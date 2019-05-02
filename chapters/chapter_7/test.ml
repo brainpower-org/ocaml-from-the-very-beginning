@@ -26,6 +26,14 @@ let tests =
       (fun _ -> assert_equal 5 (floor_sqrt 31));
     "floor_sqrt -4 Negative_Argument -4">::
       (fun _ -> assert_equal (-4) (try floor_sqrt (-4) with Negative_Argument(n) -> n));
+    "floor_sqrt_zero 25 5">::
+      (fun _ -> assert_equal 5 (floor_sqrt_zero 25));
+    "floor_sqrt_zero 26 5">::
+      (fun _ -> assert_equal 5 (floor_sqrt_zero 26));
+    "floor_sqrt_zero 31 5 - test for sqrt result truncation">::
+      (fun _ -> assert_equal 5 (floor_sqrt_zero 31));
+    "floor_sqrt_zero -4 0">::
+      (fun _ -> assert_equal 0 (floor_sqrt_zero (-1)));
   ]
 
 let () =
