@@ -34,6 +34,12 @@ let tests =
       (fun _ -> assert_equal 5 (floor_sqrt_zero 31));
     "floor_sqrt_zero -4 0">::
       (fun _ -> assert_equal 0 (floor_sqrt_zero (-1)));
+    "floor_sqrt_strict 25 5">::
+      (fun _ -> assert_equal 5 (floor_sqrt_strict 25));
+    "floor_sqrt_strict -4 Negative_Argument -4">::
+      (fun _ -> assert_equal (-4) (try floor_sqrt_strict (-4) with Negative_Argument(n) -> n));
+    "floor_sqrt_strict 0 Zero_Argument 0">::
+      (fun _ -> assert_equal (0) (try floor_sqrt_strict (0) with Zero_Argument(_) -> 0));
   ]
 
 let () =

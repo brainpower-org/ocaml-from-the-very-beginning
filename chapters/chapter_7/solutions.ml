@@ -38,7 +38,7 @@ exception Negative_Argument of int
 let floor_sqrt n = 
   if n < 0 then
     raise (Negative_Argument n)
-  else 
+  else
     float_of_int n
     |> sqrt
     |> int_of_float
@@ -56,3 +56,11 @@ let floor_sqrt_zero n =
 (* 5. Comment on the merits and demerits of exceptions as a method for dealing with exceptional
    situations, in contrast to returning a special value to indicate an error (such as -1 for a function
    normally returning a positive number). *)
+
+exception Zero_Argument of int
+
+let floor_sqrt_strict n = 
+  if n = 0 then 
+    raise (Zero_Argument 0)
+  else
+    floor_sqrt n
