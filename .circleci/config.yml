@@ -9,6 +9,9 @@ jobs:
       - checkout:
           path: ~/checkout
       - run:
+          name: install sudo
+          command: apt-get install -y sudo
+      - run:
           name: Sync
           command: sudo cp -rf ~/checkout/* /repo/ && sudo chown -R opam:opam /repo
       - run:
