@@ -25,8 +25,18 @@ let tests =
       (fun _ -> assert_equal ~printer:print_tuple_list [(1, 3); (2, 4); (5, 6)] (dictionary_from_list [(1, 3); (2, 4); (5, 6); (1, 5)]));
     "4) dictionary_from_list [(1, 3), (2, 3), (5, 6)] -> [(1, 3), (2, 3), (5, 6)]">:: 
       (fun _ -> assert_equal ~printer:print_tuple_list[(1, 3); (2, 3); (5, 6)] (dictionary_from_list [(1, 3); (2, 3); (5, 6)]));
+    "4) dictionary_from_list [(1, 3), (5, 10), (2, 3), (5, 6)] -> [(1, 3), (2, 3), (5, 10)]">:: 
+      (fun _ -> assert_equal ~printer:print_tuple_list[(1, 3);(5, 10); (2, 3)] (dictionary_from_list [(1, 3);(5,10); (2, 3); (5, 6)]));
     "5) dictionary_from_list [] -> []">:: 
-      (fun _ -> assert_equal [] (dictionary_from_list [])); 
+      (fun _ -> assert_equal [] (dictionary_from_list []));
+    "6) union [] [(1, 2),(3, 4),(5, 6)] -> [(1, 2),(3, 4),(5, 6)]">:: 
+      (fun _ -> assert_equal [(1, 2);(3, 4);(5, 6)] (union [] [(1, 2);(3, 4);(5, 6)]));
+    "6) union [(1, 2),(3, 4),(5, 6)] [] -> [(1, 2),(3, 4),(5, 6)]">:: 
+      (fun _ -> assert_equal [(1, 2);(3, 4);(5, 6)] (union [(1, 2);(3, 4);(5, 6)] []));
+    "6) union [(1, 2)] [(3, 4),(5, 6)] -> [(1, 2),(3, 4),(5, 6)]">:: 
+      (fun _ -> assert_equal [(1, 2);(3, 4);(5, 6)] (union [(1,2)] [(3, 4);(5, 6)]));
+    "6) union [(1, 2), (5, 10)] [(3, 4),(5, 6)] -> [(1, 2),(5, 10),(3, 4)]">:: 
+      (fun _ -> assert_equal ~printer:print_tuple_list [(1, 2);(5, 10);(3, 4)] (union [(1,2);(5,10)] [(3, 4);(5, 6)]));
   ]
 
 let () =
