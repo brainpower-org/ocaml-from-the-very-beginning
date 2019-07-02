@@ -15,6 +15,11 @@ let dictionary_from_list l =
                 else (k', v') :: add k v t
     in let rec aux l' dict = match l' with
         | [] -> dict
-        | (x, y) :: t -> aux t (add_key x y dict)
+        | (x, y) :: t -> aux t (add x y dict)
     in aux l []
 
+(* 6. Write the function union a b which forms the union of two dictionaries. 
+The union of two dictionaries is the dictionary containing all the entries in one or other or both. 
+In the case that a key is contained in both dictionaries, the value in the first should be preferred.*)
+
+let union a b = dictionary_from_list (a@b)
