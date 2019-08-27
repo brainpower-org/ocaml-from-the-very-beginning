@@ -3,6 +3,7 @@ open OUnit2
 open Solutions
 
 let print_char_list l =  List.map l ~f:Char.to_string |> String.concat ~sep:";"
+let print_int_list l =  List.map l ~f:Int.to_string |> String.concat ~sep:";"
 
 let tests =
   [
@@ -17,7 +18,9 @@ let tests =
     "5) member_all 'c' [['a'];['b','a']] -> false">:: 
       (fun _ -> assert_equal ~printer:Bool.to_string true (member_all 'a' [['a']])); 
     "6) member_all 'a' [[]] -> false">:: 
-      (fun _ -> assert_equal ~printer:Bool.to_string true (member_all 'a' [['a']])); 
+      (fun _ -> assert_equal ~printer:Bool.to_string true (member_all 'a' [['a']]));
+    "7) division 2 [10;20;30] -> [5;10;15]">:: 
+      (fun _ -> assert_equal ~printer:print_int_list [5;10;15] (division 2 [10;20;30]));
   ]
 
 let () =
