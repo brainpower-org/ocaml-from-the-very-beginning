@@ -18,10 +18,15 @@ let member_all x l =
 
 
 (*map: (a->b) -> [a] -> [b]*)
+
+(* element_division: int -> int -> int *)
 let element_division r d = d / r
 
-
+(* division1: int -> int list -> int list *)
 let division1 r l = map ((fun r d -> d / r) r) l
 
+(* division: int -> int list -> int list *)
 let division r l = map ((fun r' -> fun d -> d / r') r) l
 
+(* mapll: a' list list list -> (a' -> b') -> b' list list list *)
+let mapll lll f = map (map (map f)) lll
