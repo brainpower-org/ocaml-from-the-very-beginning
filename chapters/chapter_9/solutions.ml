@@ -17,7 +17,10 @@ let member_all x l =
     in member_all (member x) true l  
 
 
+let flip fn = fun a b -> fn b a
+
 (*map: (a->b) -> [a] -> [b]*)
+let element_division = flip (/)
 
 (* element_division: int -> int -> int *)
 let element_division r d = d / r
@@ -30,3 +33,18 @@ let division r l = map ((fun r' -> fun d -> d / r') r) l
 
 (* mapll: a' list list list -> (a' -> b') -> b' list list list *)
 let mapll lll f = map (map (map f)) lll
+
+let division2 r = map (flip (/) r)
+
+let maplll (lll: 'a list list list) ~(f: 'a -> 'b): 'b list list list =
+  map (fun ll -> map (map f) ll ) lll
+
+let truncate ~(lim: int) (ll: 'a list list): 'b list list =
+  let rec aux counter il ol =
+  if counter = 0
+  then ol
+  else match il
+      [] ->
+      [h:t] ->  
+  map (fun l -> ) ll
+  

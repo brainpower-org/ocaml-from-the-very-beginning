@@ -21,13 +21,18 @@ let tests =
       (fun _ -> assert_equal ~printer:Bool.to_string true (member_all 'a' [['a']]));
     "7) division 2 [10;20;30] -> [5;10;15]">:: 
       (fun _ -> assert_equal ~printer:print_int_list [5;10;15] (division 2 [10;20;30]));
-    "8) mapll [[[10;20;30]]] element_division 2 -> [[[5;10;15]]]">:: 
+    "8) division2 2 [10;20;30] -> [5;10;15]">:: 
+      (fun _ -> assert_equal ~printer:print_int_list [5;10;15] (division2 2 [10;20;30]));
+    "9) mapll [[[10;20;30]]] element_division 2 -> [[[5;10;15]]]">:: 
       (fun _ -> assert_equal [[[5;10;15]]] (mapll [[[10;20;30]]] (element_division 2)));
-    "9) mapll [[[10;20;30];[60; 80; 90]];[[100; 50; 24]]] element_division 2 -> [[[5;10;15];[30; 40; 45]];[[50; 25; 12]]]">:: 
+    "10) mapll [[[10;20;30];[60; 80; 90]];[[100; 50; 24]]] element_division 2 -> [[[5;10;15];[30; 40; 45]];[[50; 25; 12]]]">:: 
       (fun _ -> assert_equal [[[5;10;15];[30; 40; 45]];[[50; 25; 12]]] (mapll [[[10;20;30];[60; 80; 90]];[[100; 50; 24]]] (element_division 2)));
-    "10) mapll [[]] element_division 2 -> [[]]">:: 
+    "11) mapll [[]] element_division 2 -> [[]]">:: 
       (fun _ -> assert_equal [[]] (mapll [[]] (element_division 2)));
-
+    "12) maplll [[[10;20;30]]] ~f:((*) 2) -> [[[20;40;60]]]">:: 
+      (fun _ -> assert_equal [[[20;40;60]]] (maplll [[[10;20;30]]] ~f:(( *) 2)));
+    "13) truncate [[10;20;30];[5]] ~lim:2 -> [[10;20];[5]]">:: 
+      (fun _ -> assert_equal [[10;20];[5]] (truncate [[10;20;30];[5]] ~lim:2));
   ]
 
 let () =
