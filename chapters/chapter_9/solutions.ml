@@ -40,11 +40,10 @@ let maplll (lll: 'a list list list) ~(f: 'a -> 'b): 'b list list list =
   map (fun ll -> map (map f) ll ) lll
 
 let truncate ~(lim: int) (ll: 'a list list): 'b list list =
-  let rec aux counter il ol =
-  if counter = 0
-  then ol
-  else match il
-      [] ->
-      [h:t] ->  
-  map (fun l -> ) ll
-  
+  let rec aux (counter: int) (il: 'a list) ~(ol: 'b list): 'b list =
+    if counter = 0
+    then ol
+    else match il with
+    | [] -> ol
+    | h::t -> aux (counter-1) t (ol@h)
+  in map(aux lim ~ol:[]) ll

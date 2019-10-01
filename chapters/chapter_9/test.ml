@@ -4,6 +4,7 @@ open Solutions
 
 let print_char_list l =  List.map l ~f:Char.to_string |> String.concat ~sep:";"
 let print_int_list l =  List.map l ~f:Int.to_string |> String.concat ~sep:";"
+let print_int_list_list l =  List.map l ~f:Int.to_string |> String.concat ~sep:";"
 
 let tests =
   [
@@ -29,10 +30,8 @@ let tests =
       (fun _ -> assert_equal [[[5;10;15];[30; 40; 45]];[[50; 25; 12]]] (mapll [[[10;20;30];[60; 80; 90]];[[100; 50; 24]]] (element_division 2)));
     "11) mapll [[]] element_division 2 -> [[]]">:: 
       (fun _ -> assert_equal [[]] (mapll [[]] (element_division 2)));
-    "12) maplll [[[10;20;30]]] ~f:((*) 2) -> [[[20;40;60]]]">:: 
-      (fun _ -> assert_equal [[[20;40;60]]] (maplll [[[10;20;30]]] ~f:(( *) 2)));
     "13) truncate [[10;20;30];[5]] ~lim:2 -> [[10;20];[5]]">:: 
-      (fun _ -> assert_equal [[10;20];[5]] (truncate [[10;20;30];[5]] ~lim:2));
+      (fun _ -> assert_equal [[10;20];[5]] (truncate ~lim:2 ([[10;20;30];[5]]) ));
   ]
 
 let () =
