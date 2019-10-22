@@ -30,3 +30,12 @@ let division r l = map ((fun r' -> fun d -> d / r') r) l
 
 (* mapll: a' list list list -> (a' -> b') -> b' list list list *)
 let mapll lll f = map (map (map f)) lll
+
+let truncate ~lim ll =
+  let rec aux counter il ~ol =
+    if counter = 0
+    then ol
+    else match il with
+      | [] -> ol
+      | h::t -> aux (counter-1) t ~ol: (ol@[h])
+  in map(aux lim ~ol:[]) ll
