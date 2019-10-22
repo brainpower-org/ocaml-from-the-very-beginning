@@ -39,3 +39,10 @@ let truncate ~lim ll =
       | [] -> ol
       | h::t -> aux (counter-1) t ~ol: (ol@[h])
   in map(aux lim ~ol:[]) ll
+
+(* truncate_replace: int list list -> int -> int list *)
+let truncate_replace ~replace ll =
+  let aux = function
+    | [] -> replace
+    | h::_ -> h
+  in map (aux truncate ~lim:2) ll;;

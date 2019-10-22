@@ -30,6 +30,8 @@ let tests =
     (fun _ -> assert_equal [[]] (mapll [[]] (element_division 2)));
     "11) truncate [[10;20;30];[5]] ~lim:2 -> [[10;20];[5]]">:: 
     (fun _ -> assert_equal ~printer:print_int_list_list [[10;20];[5]] (truncate ~lim:2 [[10;20;30];[5]] ));
+    "12) truncate_replace ~replace:2 [[10;20;30];[5]; []] -> [10; 5; 2]">:: 
+    (fun _ -> assert_equal ~printer:print_int_list_list [[10; 5; 2]] (truncate_replace ~replace:2 [[10;20;30];[5];[]] ))
   ]
 
 let () =
