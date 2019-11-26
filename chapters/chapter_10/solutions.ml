@@ -37,3 +37,22 @@ let rec map ~f (l: 'a sequence) =
   match l with
   | Nil -> Nil
   | Cons(h, xs) -> Cons(f h, map f xs)
+
+type expr =
+  | Num of int
+  | Add of expr * expr
+  | Subtract of expr * expr
+  | Multiply of expr * expr
+  | Divide of expr * expr
+  | Power of expr * expr
+
+let int_exp x y = (float_of_int x) ** (float_of_int y) |> int_of_float
+
+let rec evaluate e =
+  match e with
+  | Num x -> x
+  | Add (e, e') -> evaluate e + evaluate e'
+  | Subtract (e, e') -> evaluate e - evaluate e'
+  | Multiply (e, e') -> evaluate e * evaluate e'
+  | Divide (e, e') -> evaluate e / evaluate e'
+  | Power (e, e') -> int_exp (evaluate e) (evaluate e')
