@@ -26,6 +26,12 @@ let tests =
     (fun _ -> assert_equal Nil (take 0 (Cons(1, Cons(2, Cons(1, Nil)))))); 
     "11) take 12 Cons(1, Cons(2, Cons(1, Nil))) -> Cons(1, Cons(2, Cons(1, Nil)))">:: 
     (fun _ -> assert_equal (Cons(1, Cons(2, Cons(1, Nil)))) (take 12 (Cons(1, Cons(2, Cons(1, Nil)))))); 
+    "12) drop 2 Cons(1, Cons(2, Cons(1, Nil))) -> Cons(1, Nil)">:: 
+    (fun _ -> assert_equal (Cons(1, Nil)) (drop 2 (Cons(1, Cons(2, Cons(1, Nil)))))); 
+    "13) drop 12 Cons(1, Cons(2, Cons(1, Nil))) -> Nil">:: 
+    (fun _ -> assert_equal (Nil) (drop 12 (Cons(1, Cons(2, Cons(1, Nil)))))); 
+    "14) map ((+) 11) Cons(1, Cons(2, Cons(1, Nil))) -> Cons(12, Cons(13, Cons(12, Nil)))">:: 
+    (fun _ -> assert_equal (Cons(12, Cons(13, Cons(12, Nil)))) (map ((+) 11) (Cons(1, Cons(2, Cons(1, Nil)))))); 
   ]
 
 let () =

@@ -25,3 +25,15 @@ let rec take (n: int) (l: 'a sequence) =
     match l with 
     | Nil -> Nil 
     | Cons(h, xs) -> Cons (h, take (n-1) xs)
+
+let rec drop(n: int) (l: 'a sequence) =
+  if (n <= 0) then l
+  else
+    match l with
+    | Nil -> Nil
+    | Cons(h, xs) -> drop (n-1) xs
+
+let rec map ~f (l: 'a sequence) =
+  match l with
+  | Nil -> Nil
+  | Cons(h, xs) -> Cons(f h, map f xs)
