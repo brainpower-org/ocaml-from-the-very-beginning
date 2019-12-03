@@ -36,6 +36,10 @@ let tests =
     (fun _ -> assert_equal 4 (evaluate (Power(Num(2), Num(2))))); 
     "16) evaluate power 3 5 -> 4">:: 
     (fun _ -> assert_equal 243 (evaluate (Power(Num(3), Num(5))))); 
+    "17) evaluate Divide 3 0 -> None">:: 
+    (fun _ -> assert_equal None (safe_evaluate (Divide(Num(3), Num(0))))); 
+    "18) evaluate Divide 12 3 -> 4">:: 
+    (fun _ -> assert_equal (Some(4)) (safe_evaluate (Divide(Num(12), Num(3))))); 
   ]
 
 let () =
