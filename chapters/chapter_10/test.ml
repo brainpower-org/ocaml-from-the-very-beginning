@@ -32,6 +32,10 @@ let tests =
     (fun _ -> assert_equal (Nil) (drop 12 (Cons(1, Cons(2, Cons(1, Nil)))))); 
     "14) map ((+) 11) Cons(1, Cons(2, Cons(1, Nil))) -> Cons(12, Cons(13, Cons(12, Nil)))">:: 
     (fun _ -> assert_equal (Cons(12, Cons(13, Cons(12, Nil)))) (map ((+) 11) (Cons(1, Cons(2, Cons(1, Nil)))))); 
+    "15) evaluate power 2 2 -> 4">:: 
+    (fun _ -> assert_equal 4 (evaluate (Power(Num(2), Num(2))))); 
+    "16) evaluate power 3 5 -> 4">:: 
+    (fun _ -> assert_equal 243 (evaluate (Power(Num(3), Num(5))))); 
   ]
 
 let () =
