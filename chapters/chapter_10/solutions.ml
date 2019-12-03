@@ -56,3 +56,5 @@ let rec evaluate e =
   | Multiply (e, e') -> evaluate e * evaluate e'
   | Divide (e, e') -> evaluate e / evaluate e'
   | Power (e, e') -> int_exp (evaluate e) (evaluate e')
+
+let safe_evaluate e = try Some(evaluate e) with Division_by_zero -> None
